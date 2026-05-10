@@ -95,3 +95,11 @@
 1. → **ABA高增长趋势词**：用实时数据确认趋势是否已启动
 2. → **流量分散关键词**：在季节词中找竞争格局未固化的机会
 3. → **高毛利轻小品**：季节性轻小品 = 低仓储风险 + 高利润弹性
+---
+
+## 参考文档
+
+本 Skill 涉及的 API 详细参数说明：
+
+- [`google_trend`](../../reference/google_trend.md)
+- [`keyword_miner`](../../reference/keyword_miner.md)

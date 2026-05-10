@@ -71,3 +71,11 @@
 1. → **ABA高增长趋势词**：增长词 + 低密度 = 双重竞争优势
 2. → **评论语义分析**：分析对应竞品痛点，指导 Listing 文案优化
 3. → **自然流量反查**：验证已优化该词的竞品实际流量效果
+---
+
+## 参考文档
+
+本 Skill 涉及的 API 详细参数说明：
+
+- [`keyword_miner`](../../reference/keyword_miner.md)
+- [`traffic_extend`](../../reference/traffic_extend.md)

@@ -60,3 +60,12 @@ ABA 搜索排名数据反映真实买家搜索行为。
 1. → **流量分散关键词**：确认是否存在未被垄断的关键词
 2. → **标题密度漏洞**：在增长词中发现 SEO 优化机会
 3. → **新品快速爆发**：在增长词对应的品类中寻找已爆发的竞品
+---
+
+## 参考文档
+
+本 Skill 涉及的 API 详细参数说明：
+
+- [`google_trend`](../../reference/google_trend.md)
+- [`keyword_miner`](../../reference/keyword_miner.md)
+- [`keyword_research`](../../reference/keyword_research.md)

@@ -59,3 +59,11 @@
 1. → **热销低评分产品**：在分散词下找评分差的竞品
 2. → **低品牌垄断类目**：从类目维度交叉验证
 3. → **标题密度漏洞**：在分散词中找 SEO 优化入口
+---
+
+## 参考文档
+
+本 Skill 涉及的 API 详细参数说明：
+
+- [`keyword_miner`](../../reference/keyword_miner.md)
+- [`keyword_research`](../../reference/keyword_research.md)

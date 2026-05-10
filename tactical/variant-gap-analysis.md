@@ -59,3 +59,12 @@
 1. → **评论语义分析**：分析各变体的差评是否集中在特定 SKU
 2. → **隐形爆款**：看冷门变体是否突然爆发
 3. → **高毛利轻小品**：验证切入变体的利润空间
+---
+
+## 参考文档
+
+本 Skill 涉及的 API 详细参数说明：
+
+- [`asin_detail`](../../reference/asin_detail.md)
+- [`asin_prediction`](../../reference/asin_prediction.md)
+- [`keyword_miner`](../../reference/keyword_miner.md)

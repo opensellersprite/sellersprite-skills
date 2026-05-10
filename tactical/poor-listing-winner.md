@@ -62,3 +62,11 @@ LQS 极低（无 A+、主图粗糙）却能月销 400+ = **市场饥渴度极高
 1. → **热销低评分产品**：Listing 质量差 + 评分低 = 多重竞争劣势
 2. → **FBM拦截**：LQS 低 + FBM = 三重弱点
 3. → **标题密度漏洞**：在优化 Listing 时同步覆盖高价值长尾词
+---
+
+## 参考文档
+
+本 Skill 涉及的 API 详细参数说明：
+
+- [`product_research`](../../reference/product_research.md)
+- [`traffic_keyword`](../../reference/traffic_keyword.md)

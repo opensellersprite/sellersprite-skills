@@ -62,3 +62,11 @@
 1. → **FBM拦截**：在轻小品中筛选 FBM 商品，以 FBA 配送优势抢占市场
 2. → **低质量Listing高销量**：高利润 + Listing 质量差 = 优化后抢占市场份额
 3. → **低品牌垄断类目**：在低垄断类目中筛选高毛利轻小品
+---
+
+## 参考文档
+
+本 Skill 涉及的 API 详细参数说明：
+
+- [`asin_prediction`](../../reference/asin_prediction.md)
+- [`product_research`](../../reference/product_research.md)

@@ -61,3 +61,13 @@
 1. → **高新品占比市场**：在低垄断类目里找新品能存活的市场
 2. → **高毛利轻小品**：在低垄断类目里找利润好的产品
 3. → **流量分散关键词**：在目标类目中找到竞争未固化的关键词
+---
+
+## 参考文档
+
+本 Skill 涉及的 API 详细参数说明：
+
+- [`market_brand_concentration`](../../reference/market_brand_concentration.md)
+- [`market_product_concentration`](../../reference/market_product_concentration.md)
+- [`market_research`](../../reference/market_research.md)
+- [`market_seller_concentration`](../../reference/market_seller_concentration.md)

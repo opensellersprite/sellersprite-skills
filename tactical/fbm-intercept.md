@@ -60,3 +60,11 @@ FBM 产品月销 300+ = **需求强劲到足以克服"无 Prime 标识"的信任
 1. → **高毛利轻小品**：轻小品 FBM = 头程低 + 拦截收益高
 2. → **低质量Listing高销量**：Listing 质量差 + FBM 配送 = 双重竞争弱势
 3. → **评论语义分析**：分析 FBM 竞品差评，找出物流和品质痛点
+---
+
+## 参考文档
+
+本 Skill 涉及的 API 详细参数说明：
+
+- [`asin_prediction`](../../reference/asin_prediction.md)
+- [`product_research`](../../reference/product_research.md)

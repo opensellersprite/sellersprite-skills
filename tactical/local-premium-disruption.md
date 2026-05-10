@@ -61,3 +61,11 @@
 1. → **FBM拦截**：美国本土 + FBM = 双重竞争优势
 2. → **评论语义分析**：分析美国卖家产品差评，做出更好的改良产品
 3. → **热销低评分产品**：筛选本土高溢价 + 低评分的改良机会
+---
+
+## 参考文档
+
+本 Skill 涉及的 API 详细参数说明：
+
+- [`asin_prediction`](../../reference/asin_prediction.md)
+- [`product_research`](../../reference/product_research.md)

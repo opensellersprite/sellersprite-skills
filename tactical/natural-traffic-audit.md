@@ -79,3 +79,12 @@
 1. → **标题密度漏洞**：从健康竞品流量词里找 SEO 优化机会
 2. → **评论语义分析**：对验真竞品做痛点拆解
 3. → **新品快速爆发**：验证该竞品是否属于新品爆发型
+---
+
+## 参考文档
+
+本 Skill 涉及的 API 详细参数说明：
+
+- [`keepa_info`](../../reference/keepa_info.md)
+- [`traffic_keyword_stat`](../../reference/traffic_keyword_stat.md)
+- [`traffic_source`](../../reference/traffic_source.md)

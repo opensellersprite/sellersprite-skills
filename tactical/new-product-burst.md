@@ -62,3 +62,12 @@ Review 数还很少说明竞争壁垒尚未建立，**现在跟进是成本最�
 1. → **评论语义分析**：确认竞品痛点，找到改良方向
 2. → **自然流量反查**：验证是否过度依赖广告
 3. → **标题密度漏洞**：寻找 Listing 优化入口
+---
+
+## 参考文档
+
+本 Skill 涉及的 API 详细参数说明：
+
+- [`asin_prediction`](../../reference/asin_prediction.md)
+- [`product_research`](../../reference/product_research.md)
+- [`traffic_source`](../../reference/traffic_source.md)

@@ -58,3 +58,12 @@
 1. → **低品牌垄断类目**：叠加 = "白牌友好型活跃市场"
 2. → **新品快速爆发**：在这些类目里精准搜索刚爆发的新品
 3. → **ABA高增长趋势词**：确认类目对应的关键词需求是否在增长
+---
+
+## 参考文档
+
+本 Skill 涉及的 API 详细参数说明：
+
+- [`market_listing_date_distribution`](../../reference/market_listing_date_distribution.md)
+- [`market_listing_trend_distribution`](../../reference/market_listing_trend_distribution.md)
+- [`market_research`](../../reference/market_research.md)

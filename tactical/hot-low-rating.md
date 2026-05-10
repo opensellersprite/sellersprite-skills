@@ -61,3 +61,11 @@
 1. → **评论语义分析**：明确产品具体缺陷所在
 2. → **自然流量反查**：验证销量是否真实且健康
 3. → **变体拆解模型**：分析哪个变体差评最集中，优先改良
+---
+
+## 参考文档
+
+本 Skill 涉及的 API 详细参数说明：
+
+- [`asin_prediction`](../../reference/asin_prediction.md)
+- [`product_research`](../../reference/product_research.md)
