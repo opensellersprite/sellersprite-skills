@@ -102,6 +102,27 @@
 ## 输出格式
 
 使用 Markdown 表格和结构化列表呈现数据，关键指标用加粗标注。评分和趋势用直观的符号表示。
+
+## 字段映射与口径（已值级验证）
+
+> 来自真实抓包 + MCP 回跑核对（yoga mat · US · 202604：5 个 ASIN × 9 字段 = 45/45 一致）。详见 [`product_research`](../reference/product_research.md)。
+
+- **响应字段名 ≠ 网页 API 名**，请读 MCP 名：`totalUnits→units`、`totalAmount→revenue`、`reviews→ratings`、`bsrRank→bsr`、`sellerType→fulfillment`；`amzUnit/averagePrice/price/rating` 同名。
+- **请求改名**：`minSales/maxSales→minUnits/maxUnits`、`minAmount→minRevenue`、`minRanking→minSubBsrRank`、`minQuestions→minLqs`、`minDeliveryPrice→minFba`。
+- **多值字段传逗号字符串**（非数组）：`includeBrands/excludeBrands/includeSellers/excludeSellers/fulfillment/sellerNation`；`badgeAC/BS/NR` 传 `"Y"`；`weightUnit` 用 `g/kg/ounces/pounds`。
+- 月份未就绪时 `units/revenue` 可能为 None，取最近自然月。
+
+## 报告可视化（HTML Dashboard）
+
+生成上述 Markdown 分析正文后，**在报告末尾追加一个可直接预览的完整 HTML Dashboard**，让交付更直观美观。完整样式规范（内联 CSS 骨架、组件库、数字格式、配色、模板骨架、检查清单）见 [`html-report-style.md`](../reference/html-report-style.md)。
+
+要点：
+- 用 ` ```html ` 代码块包裹整个页面，内联 `<style>` 且在 `:root` 定义颜色变量兜底，确保独立可预览。
+- 按本报告内容选用组件：头部结论标签 → KPI 卡片行 → 两列（条形图 + 洞察）→ 图表 → 徽章表格 / 卡片网格 → 策略三列 → 页脚数据溯源。
+- 所有数值必须格式化（销量千分位、占比 1 位小数、价格 `$X.XX`），注意 `0~1` 刻度换算，禁止裸 float。
+- 图表用 `[[chart]]...[[/chart]]` 嵌入合法 ECharts option JSON（支持 `bar`/`line`/`pie` 与双轴），不引用外部 CDN。
+- 数据缺失的维度如实标注「数据缺失」，页脚注明来源接口与数据月份。
+
 ---
 
 ## 参考文档
@@ -113,4 +134,4 @@
 - [`google_trend`](../../reference/google_trend.md)
 - [`market_research_statistics`](../../reference/market_research_statistics.md)
 - [`product_node`](../../reference/product_node.md)
-- [`product_research`](../../reference/product_research.md)
+- [`product_research`](../reference/product_research.md) ✅ 已验证

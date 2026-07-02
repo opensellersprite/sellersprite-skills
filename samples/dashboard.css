@@ -1,0 +1,114 @@
+/* ============================================================================
+   dashboard.css —— 卖家精灵 Skill HTML Dashboard 报告共享样式
+   ----------------------------------------------------------------------------
+   · 组件与配色定义 == reference/html-report-style.md（§三 CSS 骨架 + §4 组件库，
+     含 §4.7 SWOT）。此文件是该规范的可复用实现，samples/ 下各报告 <link> 引用。
+   · 末段「预览外框 / 图表容器 / chip」为样例预览专用补充（body 灰底、卡片投影、
+     .chart-box、.chip）——技能实际输出内联 CSS 时可按需省略。
+   · 改样式改这一处即全部样例生效。
+   ========================================================================== */
+
+:root{
+  --color-background-primary:#ffffff;
+  --color-background-secondary:#f5f6f8;
+  --color-text-primary:#1a1d21;
+  --color-text-secondary:#6b7280;
+  --color-text-tertiary:#9ca3af;
+  --color-border-tertiary:#e6e8eb;
+  --border-radius-md:6px;
+  --border-radius-lg:10px;
+  --color-background-info:#e8f1fc;    --color-text-info:#1e6fd0;
+  --color-background-success:#e7f6ef; --color-text-success:#1f9d63;
+  --color-background-warning:#fdf1e0; --color-text-warning:#c77a15;
+  --color-background-danger:#fdeaea;  --color-text-danger:#d64545;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+
+/* ---- 布局容器 ---- */
+.wrap{padding:1rem;font-size:14px;color:var(--color-text-primary);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",sans-serif;
+  background:var(--color-background-primary);max-width:960px;margin:0 auto}
+.sec-title{font-size:13px;font-weight:500;color:var(--color-text-secondary);
+  letter-spacing:.04em;margin:1.5rem 0 .75rem;padding-bottom:6px;
+  border-bottom:.5px solid var(--color-border-tertiary)}
+
+/* ---- KPI 卡片 ---- */
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:1rem}
+.kpi{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:12px 14px}
+.kpi-val{font-size:22px;font-weight:500;color:var(--color-text-primary);line-height:1.2}
+.kpi-label{font-size:12px;color:var(--color-text-secondary);margin-top:3px}
+.kpi-sub{font-size:11px;color:var(--color-text-secondary);margin-top:2px}
+
+/* ---- 两列 / 卡片 ---- */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1rem}
+.card{background:var(--color-background-primary);border:.5px solid var(--color-border-tertiary);
+  border-radius:var(--border-radius-lg);padding:1rem 1.25rem;margin-bottom:1rem}
+.card-title{font-size:13px;font-weight:500;color:var(--color-text-secondary);margin-bottom:.75rem}
+
+/* ---- 横向条形图 ---- */
+.bar-row{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.bar-label{font-size:12px;color:var(--color-text-secondary);width:140px;flex-shrink:0;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar-track{flex:1;height:8px;background:var(--color-background-secondary);border-radius:4px;overflow:hidden}
+.bar-fill{height:100%;border-radius:4px}
+.bar-val{font-size:12px;font-weight:500;color:var(--color-text-primary);width:44px;text-align:right;flex-shrink:0}
+
+/* ---- 徽章 ---- */
+.tag{display:inline-block;padding:2px 8px;border-radius:var(--border-radius-md);font-size:11px;font-weight:500}
+.tag-info{background:var(--color-background-info);color:var(--color-text-info)}
+.tag-success{background:var(--color-background-success);color:var(--color-text-success)}
+.tag-warn{background:var(--color-background-warning);color:var(--color-text-warning)}
+.tag-danger{background:var(--color-background-danger);color:var(--color-text-danger)}
+
+/* ---- 文字洞察 ---- */
+.insight-row{display:flex;gap:8px;margin-bottom:8px;align-items:flex-start}
+.insight-icon{font-size:16px;flex-shrink:0;margin-top:1px}
+.insight-text{font-size:13px;color:var(--color-text-secondary);line-height:1.5}
+.insight-text strong{color:var(--color-text-primary);font-weight:500}
+
+/* ---- 表格 ---- */
+.tbl{width:100%;font-size:12px;border-collapse:collapse}
+.tbl th{font-weight:500;color:var(--color-text-secondary);text-align:left;
+  padding:6px 8px 6px 0;border-bottom:.5px solid var(--color-border-tertiary)}
+.tbl td{padding:6px 8px 6px 0;border-bottom:.5px solid var(--color-border-tertiary);
+  color:var(--color-text-primary);vertical-align:middle}
+.tbl tr:last-child td{border-bottom:none}
+
+/* ---- 卡片网格（产品形态 / 变体） ---- */
+.form-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.form-card{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:12px}
+
+/* ---- 策略三列 ---- */
+.strat-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:1rem}
+.strat-card{background:var(--color-background-primary);border:.5px solid var(--color-border-tertiary);
+  border-radius:var(--border-radius-lg);padding:12px 14px}
+.strat-card-title{font-size:13px;font-weight:500;margin-bottom:8px}
+.strat-item{font-size:12px;color:var(--color-text-secondary);margin-bottom:4px;display:flex;gap:6px;line-height:1.4}
+.strat-item::before{content:"·";color:var(--color-text-tertiary);flex-shrink:0}
+
+/* ---- SWOT 2×2 矩阵（规范 §4.7） ---- */
+.swot-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.swot-card{border-radius:var(--border-radius-md);padding:12px 14px}
+.swot-title{font-size:12px;font-weight:600;margin-bottom:6px}
+.swot-item{font-size:12px;color:var(--color-text-secondary);line-height:1.6}
+
+/* ---- 页脚 ---- */
+.foot{font-size:12px;color:var(--color-text-secondary);padding-top:8px;
+  border-top:.5px solid var(--color-border-tertiary)}
+
+/* ---- 响应式（移动端降级） ---- */
+@media(max-width:640px){
+  .kpi-grid{grid-template-columns:repeat(2,1fr)}
+  .two-col,.strat-grid,.form-grid,.swot-grid{grid-template-columns:1fr}
+}
+
+/* ============================================================================
+   以下为「样例预览专用」补充：预览外框 / 图表容器 / chip
+   ========================================================================== */
+body{background:#eceef1}
+.wrap{margin:1rem auto;border-radius:12px;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.chart-box{width:100%;height:300px}
+.chart-box.pie{height:260px}
+.chip{display:inline-block;font-size:11px;color:var(--color-text-secondary);
+  background:var(--color-background-secondary);border-radius:var(--border-radius-md);
+  padding:3px 9px;margin:0 6px 6px 0}

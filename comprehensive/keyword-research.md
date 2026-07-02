@@ -126,6 +126,28 @@
 ## 输出格式
 
 使用 Markdown 表格、星级评分和趋势文字描述呈现。机会评级使用星号直观表示。
+
+## 字段映射与口径（已值级验证）
+
+> 种子词扩展用 `keyword_miner`（网页「关键词挖掘」后端）。已核对：phone stand · US · 202605，`total=326` 与网页一致、22/23 字段逐位相等。详见 [`keyword_miner`](../reference/keyword_miner.md)。
+
+- **近乎零改名**：`searches/purchases/purchaseRate/products/supplyDemandRatio/cvsShareRate/spr/titleDensity/searchRank` 等均同名。
+- **唯一缺口**：网页 `avgReviews`（平均评分数）→ MCP `avgRatings` **返回 None**，展示标「—」。
+- **刻度**：`purchaseRate/cvsShareRate/monopolyClickRate` 为 0~1，展示 ×100；`supplyDemandRatio` 真实比值不换算。
+- **大部分区间筛选服务端直名支持**（minSearch/minPurchases/minProducts/minBid/minSPR/minTitleDensity…）；`minImpressions/minClicks/minCvsShareRate` MCP 无参数，需客户端兜底过滤。
+- 工具选型：种子词扩展用 `keyword_miner`；类目维度选品（带同比/近3月增长率）用 `keyword_research`。
+
+## 报告可视化（HTML Dashboard）
+
+生成上述 Markdown 分析正文后，**在报告末尾追加一个可直接预览的完整 HTML Dashboard**，让交付更直观美观。完整样式规范（内联 CSS 骨架、组件库、数字格式、配色、模板骨架、检查清单）见 [`html-report-style.md`](../reference/html-report-style.md)。
+
+要点：
+- 用 ` ```html ` 代码块包裹整个页面，内联 `<style>` 且在 `:root` 定义颜色变量兜底，确保独立可预览。
+- 按本报告内容选用组件：头部结论标签 → KPI 卡片行 → 两列（条形图 + 洞察）→ 图表 → 徽章表格 / 卡片网格 → 策略三列 → 页脚数据溯源。
+- 所有数值必须格式化（销量千分位、占比 1 位小数、价格 `$X.XX`），注意 `0~1` 刻度换算，禁止裸 float。
+- 图表用 `[[chart]]...[[/chart]]` 嵌入合法 ECharts option JSON（支持 `bar`/`line`/`pie` 与双轴），不引用外部 CDN。
+- 数据缺失的维度如实标注「数据缺失」，页脚注明来源接口与数据月份。
+
 ---
 
 ## 参考文档
@@ -136,6 +158,6 @@
 - [`aba_research_trend`](../../reference/aba_research_trend.md)
 - [`aba_research_weekly`](../../reference/aba_research_weekly.md)
 - [`google_trend`](../../reference/google_trend.md)
-- [`keyword_miner`](../../reference/keyword_miner.md)
+- [`keyword_miner`](../reference/keyword_miner.md) ✅ 已验证
 - [`keyword_research`](../../reference/keyword_research.md)
 - [`keyword_research_trends`](../../reference/keyword_research_trends.md)

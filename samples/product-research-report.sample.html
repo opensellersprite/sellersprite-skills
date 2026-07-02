@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<!--
+  product-research Skill · HTML Dashboard 观感样例（收纳箱选品筛选 · US）
+  ─────────────────────────────────────────────────────────────────────────
+  · CSS 与组件结构 == reference/html-report-style.md 规范，与技能实际输出一致。
+  · 图表：本样例用真实 ECharts(CDN) 渲染以便浏览器预览；技能实际输出写成
+    [[chart]]{ECharts option JSON}[[/chart]]（见图表上方注释里的等价片段）。
+  · 数据为演示用 mock，非真实抓取。
+-->
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>智能选品 · 收纳箱潜力商品筛选 · US</title>
+<link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+<div class="wrap">
+
+  <!-- 头部 -->
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem">
+    <div>
+      <div style="font-size:15px;font-weight:500">智能选品 · 收纳箱潜力商品</div>
+      <div style="font-size:12px;color:var(--color-text-secondary);margin-top:3px">Amazon US · 类目 Storage Bins · 数据基准：2026-05</div>
+    </div>
+    <span class="tag tag-success">命中 23 款 · 机会充足</span>
+  </div>
+
+  <!-- 筛选口径 -->
+  <div class="card" style="padding:.75rem 1.25rem">
+    <span class="chip">月销 ≥ 400</span>
+    <span class="chip">LQS ≤ 60</span>
+    <span class="chip">上架 ≤ 6 月</span>
+    <span class="chip">评论 ≤ 100</span>
+    <span class="chip">FBA</span>
+    <span class="chip">价格 $15–$40</span>
+  </div>
+
+  <!-- KPI -->
+  <div class="kpi-grid">
+    <div class="kpi"><div class="kpi-val">23</div><div class="kpi-label">命中商品数</div><div class="kpi-sub">符合全部条件</div></div>
+    <div class="kpi"><div class="kpi-val">$23.60</div><div class="kpi-label">命中均价</div><div class="kpi-sub">中位 $22.90</div></div>
+    <div class="kpi"><div class="kpi-val">720</div><div class="kpi-label">平均月销量</div><div class="kpi-sub">件 · 最高 3,200</div></div>
+    <div class="kpi"><div class="kpi-val">100%</div><div class="kpi-label">新品占比</div><div class="kpi-sub">全部 ≤6 月上架</div></div>
+  </div>
+
+  <!-- 两列：价格带分布图 + 洞察 -->
+  <!--
+   等价 [[chart]] 片段：
+   [[chart]]
+   {"title":{"text":"命中商品价格带分布"},"tooltip":{"trigger":"axis"},"xAxis":{"type":"category","data":["<$15","$15-20","$20-25","$25-30","$30-35",">$35"]},"yAxis":{"type":"value","name":"商品数"},"series":[{"type":"bar","itemStyle":{"color":"#378ADD"},"data":[2,7,8,4,1,1]}]}
+   [[/chart]]
+  -->
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title">命中商品价格带分布</div>
+      <div id="chart-price" class="chart-box" role="img" aria-label="命中商品价格带分布柱状图"></div>
+    </div>
+    <div class="card">
+      <div class="card-title">筛选洞察</div>
+      <div class="insight-row"><span class="insight-icon">🎯</span><span class="insight-text">机会集中在 <strong>$15–$25</strong> 价格带（15/23 款），刚需大众段</span></div>
+      <div class="insight-row"><span class="insight-icon">🆕</span><span class="insight-text">命中全为新品且月销 ≥400，验证<strong>新品仍能出单</strong>，进入窗口开放</span></div>
+      <div class="insight-row"><span class="insight-icon">🧩</span><span class="insight-text">LQS ≤60 说明头部 Listing 质量不高，<strong>内容优化即有超越空间</strong></span></div>
+      <div class="insight-row"><span class="insight-icon">⭐</span><span class="insight-text">评论 ≤100 仍出单，<strong>破评门槛低</strong>，冷启动压力小</span></div>
+    </div>
+  </div>
+
+  <!-- 候选商品表 -->
+  <div class="card">
+    <div class="card-title">TOP 潜力候选商品</div>
+    <table class="tbl">
+      <thead><tr><th>ASIN</th><th>品牌</th><th>价格</th><th>月销量</th><th>评分</th><th>评论</th><th>LQS</th><th>潜力评级</th></tr></thead>
+      <tbody>
+        <tr><td>B0CLR1234</td><td>HOMIDEC</td><td>$22.99</td><td>3,200</td><td>4.3</td><td>62</td><td>54</td><td><span class="tag tag-success">高潜力</span></td></tr>
+        <tr><td>B0FAB5678</td><td>Lifewit</td><td>$18.50</td><td>1,850</td><td>4.4</td><td>88</td><td>58</td><td><span class="tag tag-success">高潜力</span></td></tr>
+        <tr><td>B0CLR9012</td><td>无品牌</td><td>$24.90</td><td>1,120</td><td>4.1</td><td>41</td><td>48</td><td><span class="tag tag-info">值得测试</span></td></tr>
+        <tr><td>B0BOX3456</td><td>SimpleHouseware</td><td>$16.99</td><td>960</td><td>4.5</td><td>73</td><td>60</td><td><span class="tag tag-info">值得测试</span></td></tr>
+        <tr><td>B0ROL7890</td><td>无品牌</td><td>$31.00</td><td>540</td><td>3.9</td><td>29</td><td>45</td><td><span class="tag tag-warn">需验证</span></td></tr>
+      </tbody>
+    </table>
+    <div style="margin-top:8px;font-size:11px;color:var(--color-text-tertiary)">潜力评级综合：月销量 / 评论门槛 / LQS 差距 / 价格带竞争度加权</div>
+  </div>
+
+  <!-- 策略三列 -->
+  <div class="strat-grid">
+    <div class="strat-card">
+      <div class="strat-card-title" style="color:var(--color-text-success)">优先切入</div>
+      <div class="strat-item">$15–$25 大众段新品，需求验证充分</div>
+      <div class="strat-item">无品牌 / 弱品牌卖家占比高，卡位机会大</div>
+      <div class="strat-item">LQS ≤50 的款，靠主图与 A+ 内容超越</div>
+    </div>
+    <div class="strat-card">
+      <div class="strat-card-title" style="color:var(--color-text-info)">下一步动作</div>
+      <div class="strat-item">对 TOP3 跑 /competitor-analysis 深拆</div>
+      <div class="strat-item">对高潜款跑 /review-insights 提炼差评改良点</div>
+      <div class="strat-item">用 /keyword-research 核算需求与旺季</div>
+    </div>
+    <div class="strat-card">
+      <div class="strat-card-title" style="color:var(--color-text-danger)">风险提示</div>
+      <div class="strat-item">>$30 段命中少、月销低，谨慎进入</div>
+      <div class="strat-item">3.9 分低评款需先验证差评是否结构性缺陷</div>
+      <div class="strat-item">新品数据波动大，建议连续 2 月复核</div>
+    </div>
+  </div>
+
+  <!-- 页脚 -->
+  <div class="foot">数据来源：卖家精灵 MCP · product_research / product_node · 站点 US · 数据月份 2026-05 · 本样例数据为演示 mock</div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<script>
+(function(){
+  if(!window.echarts){return;}
+  echarts.init(document.getElementById('chart-price')).setOption({
+    tooltip:{trigger:'axis'},
+    grid:{left:44,right:16,top:16,bottom:32},
+    xAxis:{type:'category',data:['<$15','$15-20','$20-25','$25-30','$30-35','>$35']},
+    yAxis:{type:'value',name:'商品数'},
+    series:[{type:'bar',itemStyle:{color:'#378ADD',borderRadius:[3,3,0,0]},data:[2,7,8,4,1,1]}]
+  });
+  window.addEventListener('resize',function(){
+    echarts.getInstanceByDom(document.getElementById('chart-price')).resize();
+  });
+})();
+</script>
+</body>
+</html>

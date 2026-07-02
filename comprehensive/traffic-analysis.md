@@ -167,6 +167,28 @@
 ## 输出格式
 
 使用 Markdown 表格和结构化列表呈现。流量健康度用颜色文字标注（健康/警告/危险）。关键优化建议用加粗标注。
+
+## 字段映射与口径（已值级验证）
+
+> 流量关键词明细用 `traffic_keyword`（网页「关键词反查」后端，`POST /v3/api/relation/reversing`）。已核对：交集词 × 23 字段逐位相等（零改名）。详见 [`traffic_keyword`](../reference/traffic_keyword.md)。
+
+- **零改名**：响应字段与网页同名（仅 `keywords→keyword`）。
+- `rankPosition`（自然排名）/ `adPosition`（广告排名）是对象 `{page,index,position}`，展示取 `.position`。
+- **刻度**：`purchaseRate/trafficPercentage/naturalRatio/adRatio/monopolyClickRate/top3*` 为 0~1，展示 ×100；`supplyDemandRatio` 真实比值不换算。
+- **单工具不覆盖全部筛选**：`traffic_keyword` 全字段但无区间筛选；`traffic_extend` 有区间筛选但丢弃 rankPosition/adPosition/naturalRatio/adRatio/impressions/clicks。保真取数用前者 + 客户端区间过滤。
+- 转化分析用 `keyword_order`（转化优质/平稳/流失词），它是转化质量子集，**不等于**反查全集。
+
+## 报告可视化（HTML Dashboard）
+
+生成上述 Markdown 分析正文后，**在报告末尾追加一个可直接预览的完整 HTML Dashboard**，让交付更直观美观。完整样式规范（内联 CSS 骨架、组件库、数字格式、配色、模板骨架、检查清单）见 [`html-report-style.md`](../reference/html-report-style.md)。
+
+要点：
+- 用 ` ```html ` 代码块包裹整个页面，内联 `<style>` 且在 `:root` 定义颜色变量兜底，确保独立可预览。
+- 按本报告内容选用组件：头部结论标签 → KPI 卡片行 → 两列（条形图 + 洞察）→ 图表 → 徽章表格 / 卡片网格 → 策略三列 → 页脚数据溯源。
+- 所有数值必须格式化（销量千分位、占比 1 位小数、价格 `$X.XX`），注意 `0~1` 刻度换算，禁止裸 float。
+- 图表用 `[[chart]]...[[/chart]]` 嵌入合法 ECharts option JSON（支持 `bar`/`line`/`pie` 与双轴），不引用外部 CDN。
+- 数据缺失的维度如实标注「数据缺失」，页脚注明来源接口与数据月份。
+
 ---
 
 ## 参考文档
@@ -175,7 +197,7 @@
 
 - [`keyword_order`](../../reference/keyword_order.md)
 - [`traffic_extend`](../../reference/traffic_extend.md)
-- [`traffic_keyword`](../../reference/traffic_keyword.md)
+- [`traffic_keyword`](../reference/traffic_keyword.md) ✅ 已验证
 - [`traffic_keyword_stat`](../../reference/traffic_keyword_stat.md)
 - [`traffic_listing`](../../reference/traffic_listing.md)
 - [`traffic_listing_stat`](../../reference/traffic_listing_stat.md)

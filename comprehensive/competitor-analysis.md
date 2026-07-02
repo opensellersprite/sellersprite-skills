@@ -149,6 +149,25 @@
 ## 输出格式
 
 使用 Markdown 表格、评分卡、SWOT矩阵呈现。关键发现用加粗标注。
+
+## 字段映射与口径（已值级验证）
+
+> 本 Skill 是**单 ASIN 深度拆解**（asin_detail + traffic_keyword 等）。若需**按 ASIN/关键词/品牌/卖家批量查商品列表**，用 `competitor_lookup`（网页「查竞品」后端），二者互补。
+
+- **流量关键词** `traffic_keyword`：响应与网页**零改名**；`rankPosition/adPosition` 是对象取 `.position`；`purchaseRate/trafficPercentage/naturalRatio/adRatio` 为 0~1 展示 ×100，`supplyDemandRatio` 真实比值不换算。详见 [`traffic_keyword`](../reference/traffic_keyword.md)。
+- **列表查询** `competitor_lookup`：响应改名同 product_research（`totalUnits→units`、`bsrRank→bsr`、`sellerType→fulfillment` 等）；网页「最近30天」与 MCP 自然月口径不同。详见 [`competitor_lookup`](../reference/competitor_lookup.md)。
+
+## 报告可视化（HTML Dashboard）
+
+生成上述 Markdown 分析正文后，**在报告末尾追加一个可直接预览的完整 HTML Dashboard**，让交付更直观美观。完整样式规范（内联 CSS 骨架、组件库、数字格式、配色、模板骨架、检查清单）见 [`html-report-style.md`](../reference/html-report-style.md)。
+
+要点：
+- 用 ` ```html ` 代码块包裹整个页面，内联 `<style>` 且在 `:root` 定义颜色变量兜底，确保独立可预览。
+- 按本报告内容选用组件：头部结论标签 → KPI 卡片行 → 两列（条形图 + 洞察）→ 图表 → 徽章表格 / 卡片网格 → 策略三列 → 页脚数据溯源。
+- 所有数值必须格式化（销量千分位、占比 1 位小数、价格 `$X.XX`），注意 `0~1` 刻度换算，禁止裸 float。
+- 图表用 `[[chart]]...[[/chart]]` 嵌入合法 ECharts option JSON（支持 `bar`/`line`/`pie` 与双轴），不引用外部 CDN。
+- 数据缺失的维度如实标注「数据缺失」，页脚注明来源接口与数据月份。
+
 ---
 
 ## 参考文档
@@ -158,9 +177,10 @@
 - [`asin_coupon_trend`](../../reference/asin_coupon_trend.md)
 - [`asin_detail`](../../reference/asin_detail.md)
 - [`asin_prediction`](../../reference/asin_prediction.md)
+- [`competitor_lookup`](../reference/competitor_lookup.md) ✅ 已验证（列表查询，补充）
 - [`keepa_info`](../../reference/keepa_info.md)
 - [`review`](../../reference/review.md)
-- [`traffic_keyword`](../../reference/traffic_keyword.md)
+- [`traffic_keyword`](../reference/traffic_keyword.md) ✅ 已验证
 - [`traffic_keyword_stat`](../../reference/traffic_keyword_stat.md)
 - [`traffic_listing`](../../reference/traffic_listing.md)
 - [`traffic_source`](../../reference/traffic_source.md)

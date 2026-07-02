@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<!--
+  competitor-analysis Skill · HTML Dashboard 观感样例（SONGMICS 6-Pack 收纳箱 · US）
+  ─────────────────────────────────────────────────────────────────────────
+  · CSS 与组件结构 == reference/html-report-style.md 规范，与技能实际输出一致。
+  · 图表：本样例用真实 ECharts(CDN) 渲染以便浏览器预览；技能实际输出写成
+    [[chart]]{ECharts option JSON}[[/chart]]（见图表上方注释里的等价片段）。
+  · 数据为演示用 mock，非真实抓取。
+-->
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>竞品拆解 · SONGMICS 6-Pack 收纳箱 · US</title>
+<link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+<div class="wrap">
+
+  <!-- 头部 -->
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem">
+    <div>
+      <div style="font-size:15px;font-weight:500">SONGMICS 6-Pack Fabric Storage Bins</div>
+      <div style="font-size:12px;color:var(--color-text-secondary);margin-top:3px">ASIN B0CQ7X9ABC · Amazon US · 数据基准：2026-05</div>
+    </div>
+    <span class="tag tag-danger">成熟头部 · 高壁垒</span>
+  </div>
+
+  <!-- KPI -->
+  <div class="kpi-grid">
+    <div class="kpi"><div class="kpi-val">$27.99</div><div class="kpi-label">到手价</div><div class="kpi-sub">标价 $32.99 · Coupon 15%</div></div>
+    <div class="kpi"><div class="kpi-val">4.5 <span style="font-size:13px;color:var(--color-text-secondary)">★</span></div><div class="kpi-label">评分 / 评论数</div><div class="kpi-sub">3,240 条</div></div>
+    <div class="kpi"><div class="kpi-val">8,600</div><div class="kpi-label">月销量（件）</div><div class="kpi-sub">月销售额约 $24.1万</div></div>
+    <div class="kpi"><div class="kpi-val">#12</div><div class="kpi-label">小类 BSR</div><div class="kpi-sub">大类 #1,850 · FBA · 4 变体</div></div>
+  </div>
+
+  <!-- 两列：14月销量趋势 + 关键洞察 -->
+  <!--
+   等价 [[chart]] 片段：
+   [[chart]]
+   {"title":{"text":"近14个月月销量趋势"},"tooltip":{"trigger":"axis"},"xAxis":{"type":"category","data":["25-04","25-05","25-06","25-07","25-08","25-09","25-10","25-11","25-12","26-01","26-02","26-03","26-04","26-05"]},"yAxis":{"type":"value","name":"月销量"},"series":[{"type":"line","smooth":true,"areaStyle":{},"itemStyle":{"color":"#378ADD"},"data":[5200,5600,6100,6400,6900,7300,8100,9800,11200,8700,7600,7900,8300,8600]}]}
+   [[/chart]]
+  -->
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title">近 14 个月月销量趋势</div>
+      <div id="chart-trend" class="chart-box" role="img" aria-label="近14个月月销量趋势折线图"></div>
+    </div>
+    <div class="card">
+      <div class="card-title">关键洞察</div>
+      <div class="insight-row"><span class="insight-icon">📈</span><span class="insight-text">销量稳步上行，<strong>11–12 月</strong>旺季冲高至 <strong>11,200 件</strong>，节后回落但基本盘稳固</span></div>
+      <div class="insight-row"><span class="insight-icon">🛡️</span><span class="insight-text">评论 <strong>3,240 条</strong>形成评价壁垒，新品短期难以正面撼动</span></div>
+      <div class="insight-row"><span class="insight-icon">💰</span><span class="insight-text">长期挂 <strong>15% Coupon</strong>，标价高、到手价适中的「高价常促」策略</span></div>
+      <div class="insight-row"><span class="insight-icon">🔗</span><span class="insight-text">自然流量占比 <strong>52%</strong>，SEO 根基扎实，广告依赖度低</span></div>
+    </div>
+  </div>
+
+  <!-- 两列：流量结构 pie + 评分分布 bars -->
+  <!--
+   等价 [[chart]] 片段（流量结构）：
+   [[chart]]
+   {"title":{"text":"流量结构占比"},"tooltip":{"trigger":"item"},"series":[{"type":"pie","radius":"60%","data":[{"value":52,"name":"自然搜索"},{"value":28,"name":"SP广告"},{"value":9,"name":"品牌广告"},{"value":4,"name":"视频广告"},{"value":7,"name":"推荐流量"}]}]}
+   [[/chart]]
+  -->
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title">流量结构占比</div>
+      <div id="chart-traffic" class="chart-box pie" role="img" aria-label="流量来源结构饼图"></div>
+    </div>
+    <div class="card">
+      <div class="card-title">评分分布</div>
+      <div class="bar-row"><span class="bar-label">5 星</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:#5DCAA5"></span></span><span class="bar-val">68%</span></div>
+      <div class="bar-row"><span class="bar-label">4 星</span><span class="bar-track"><span class="bar-fill" style="width:28%;background:#378ADD"></span></span><span class="bar-val">19%</span></div>
+      <div class="bar-row"><span class="bar-label">3 星</span><span class="bar-track"><span class="bar-fill" style="width:9%;background:#EF9F27"></span></span><span class="bar-val">6%</span></div>
+      <div class="bar-row"><span class="bar-label">2 星</span><span class="bar-track"><span class="bar-fill" style="width:4%;background:#E24B4A"></span></span><span class="bar-val">3%</span></div>
+      <div class="bar-row"><span class="bar-label">1 星</span><span class="bar-track"><span class="bar-fill" style="width:6%;background:#d64545"></span></span><span class="bar-val">4%</span></div>
+      <div style="margin-top:10px;font-size:12px;color:var(--color-text-secondary)">差评（1–2 星）合计 <strong style="color:var(--color-text-primary)">7%</strong> · 高频差评：拉链易坏、异味</div>
+    </div>
+  </div>
+
+  <!-- 核心流量关键词表 -->
+  <div class="card">
+    <div class="card-title">TOP 流量关键词</div>
+    <table class="tbl">
+      <thead><tr><th>关键词</th><th>月搜索量</th><th>自然排名</th><th>流量占比</th><th>PPC 竞价</th><th>竞争度</th></tr></thead>
+      <tbody>
+        <tr><td>storage bins</td><td>40.7万</td><td>#8</td><td>18.4%</td><td>$1.21</td><td><span class="tag tag-danger">红海主词</span></td></tr>
+        <tr><td>fabric storage bins</td><td>8.6万</td><td>#3</td><td>12.1%</td><td>$0.94</td><td><span class="tag tag-warn">中等</span></td></tr>
+        <tr><td>storage bins with lids</td><td>12.3万</td><td>#5</td><td>10.7%</td><td>$0.98</td><td><span class="tag tag-warn">中等</span></td></tr>
+        <tr><td>closet storage bins</td><td>5.4万</td><td>#2</td><td>8.9%</td><td>$0.87</td><td><span class="tag tag-success">可切入</span></td></tr>
+        <tr><td>collapsible storage bins</td><td>3.2万</td><td>#4</td><td>6.2%</td><td>$0.76</td><td><span class="tag tag-success">可切入</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- SWOT 2×2 矩阵 · 组件规范见 reference/html-report-style.md §4.7 -->
+  <div class="card">
+    <div class="card-title">SWOT 分析</div>
+    <div class="swot-grid">
+      <div class="swot-card" style="background:var(--color-background-success)">
+        <div class="swot-title" style="color:var(--color-text-success)">优势 S</div>
+        <div class="swot-item">3,240 评价壁垒 · 4.5 高分 · 自然流量 52% · 品牌认知强</div>
+      </div>
+      <div class="swot-card" style="background:var(--color-background-warning)">
+        <div class="swot-title" style="color:var(--color-text-warning)">劣势 W</div>
+        <div class="swot-item">拉链/异味差评占 7% · 标价偏高依赖 Coupon · 布艺同质化</div>
+      </div>
+      <div class="swot-card" style="background:var(--color-background-info)">
+        <div class="swot-title" style="color:var(--color-text-info)">机会 O</div>
+        <div class="swot-item">closet / collapsible 长尾自然排名靠前但搜索仍在涨 · 透明形态缺位</div>
+      </div>
+      <div class="swot-card" style="background:var(--color-background-danger)">
+        <div class="swot-title" style="color:var(--color-text-danger)">威胁 T</div>
+        <div class="swot-item">IRIS 等头部低价挤压 · 旺季广告 CPC 抬升 · 大盘增速放缓</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 应对策略三列 -->
+  <div class="strat-grid">
+    <div class="strat-card">
+      <div class="strat-card-title" style="color:var(--color-text-success)">差异化切入</div>
+      <div class="strat-item">主打「透明可视 + 一体带盖」，避开布艺同质红海</div>
+      <div class="strat-item">针对拉链/异味差评做材质与工艺升级卖点</div>
+      <div class="strat-item">从 closet / collapsible 长尾词建立自然排名</div>
+    </div>
+    <div class="strat-card">
+      <div class="strat-card-title" style="color:var(--color-text-info)">定价与流量</div>
+      <div class="strat-item">首发裸价卡 $22–24，避开其 Coupon 到手价区间</div>
+      <div class="strat-item">广告主组打中等竞争词，主词只做防守性精准</div>
+      <div class="strat-item">旺季前 2 个月完成评价冷启动至 100+</div>
+    </div>
+    <div class="strat-card">
+      <div class="strat-card-title" style="color:var(--color-text-danger)">风险规避</div>
+      <div class="strat-item">避免正面主词竞价战，控制 ACoS</div>
+      <div class="strat-item">轻小/折叠形态降低 FBA 与头程成本</div>
+      <div class="strat-item">监控 IRIS 低价动作，预留价格弹性</div>
+    </div>
+  </div>
+
+  <!-- 页脚 -->
+  <div class="foot">数据来源：卖家精灵 MCP · asin_detail / keepa_info / traffic_source / traffic_keyword / review / asin_coupon_trend · 数据月份 2026-05 · 本样例数据为演示 mock</div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<script>
+(function(){
+  if(!window.echarts){return;}
+  echarts.init(document.getElementById('chart-trend')).setOption({
+    tooltip:{trigger:'axis'},
+    grid:{left:52,right:16,top:16,bottom:44},
+    xAxis:{type:'category',data:['25-04','25-05','25-06','25-07','25-08','25-09','25-10','25-11','25-12','26-01','26-02','26-03','26-04','26-05'],axisLabel:{rotate:45,fontSize:10}},
+    yAxis:{type:'value',name:'月销量'},
+    series:[{type:'line',smooth:true,itemStyle:{color:'#378ADD'},areaStyle:{color:'rgba(55,138,221,0.12)'},data:[5200,5600,6100,6400,6900,7300,8100,9800,11200,8700,7600,7900,8300,8600]}]
+  });
+  echarts.init(document.getElementById('chart-traffic')).setOption({
+    tooltip:{trigger:'item'},
+    legend:{bottom:0,textStyle:{fontSize:11}},
+    color:['#378ADD','#5DCAA5','#EF9F27','#E24B4A','#7F77DD'],
+    series:[{type:'pie',radius:'60%',center:['50%','44%'],data:[
+      {value:52,name:'自然搜索'},{value:28,name:'SP广告'},{value:9,name:'品牌广告'},{value:4,name:'视频广告'},{value:7,name:'推荐流量'}
+    ]}]
+  });
+  window.addEventListener('resize',function(){
+    echarts.getInstanceByDom(document.getElementById('chart-trend')).resize();
+    echarts.getInstanceByDom(document.getElementById('chart-traffic')).resize();
+  });
+})();
+</script>
+</body>
+</html>

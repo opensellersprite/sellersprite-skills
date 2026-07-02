@@ -142,6 +142,29 @@
 ## 输出格式
 
 使用 Markdown 表格、评分卡和结构化列表呈现。关键结论用加粗标注，风险用警告标识。
+
+## 字段映射与口径（已值级验证）
+
+> 以下结论来自真实抓包 + MCP 回跑核对（Mat Bags · US · 202604：`topProducts/brands/sellers=100/67/68`、`totalUnits=18254`、`totalProducts=292` 全一致）。详见 [`market_research`](../reference/market_research.md)。
+
+- **样本数量列**对应响应 `topProducts`（商品数）/ `brands`（品牌数）/ `sellers`（卖家数）——**不是** topBrands/topSellers；类目在售总数是 `totalProducts`。
+- **集中度** `top{3,5,10,20}{Product,Brand,Seller}Crn` 是 **0~1 小数，展示 ×100**；新品占比 `l{1,3,6,12}NewRatio` 同理。
+- **`returnRatio`、`fbaProportion/fbmProportion/amazonSelfProportion` 已是 0~100 百分数，不再 ×100**。
+- **集中度类筛选**（`*Crn`/`*Proportion`）入参是 0~1：按百分比填需 ÷100。
+- `sellerLocation` 多选 MCP 不支持，需拆成 N 次单值调用再并集。
+- 根节点统计常全 0，必须选叶子节点；当前月未就绪取最近自然月。
+
+## 报告可视化（HTML Dashboard）
+
+生成上述 Markdown 分析正文后，**在报告末尾追加一个可直接预览的完整 HTML Dashboard**，让交付更直观美观。完整样式规范（内联 CSS 骨架、组件库、数字格式、配色、模板骨架、检查清单）见 [`html-report-style.md`](../reference/html-report-style.md)。
+
+要点：
+- 用 ` ```html ` 代码块包裹整个页面，内联 `<style>` 且在 `:root` 定义颜色变量兜底，确保独立可预览。
+- 按本报告内容选用组件：头部结论标签 → KPI 卡片行 → 两列（条形图 + 洞察）→ 图表 → 徽章表格 / 卡片网格 → 策略三列 → 页脚数据溯源。
+- 所有数值必须格式化（销量千分位、占比 1 位小数、价格 `$X.XX`），注意 `0~1` 刻度换算，禁止裸 float。
+- 图表用 `[[chart]]...[[/chart]]` 嵌入合法 ECharts option JSON（支持 `bar`/`line`/`pie` 与双轴），不引用外部 CDN。
+- 数据缺失的维度如实标注「数据缺失」，页脚注明来源接口与数据月份。
+
 ---
 
 ## 参考文档
@@ -156,7 +179,7 @@
 - [`market_product_demand_trend`](../../reference/market_product_demand_trend.md)
 - [`market_rating_distribution`](../../reference/market_rating_distribution.md)
 - [`market_ratings_count_distribution`](../../reference/market_ratings_count_distribution.md)
-- [`market_research`](../../reference/market_research.md)
+- [`market_research`](../reference/market_research.md) ✅ 已验证
 - [`market_research_statistics`](../../reference/market_research_statistics.md)
 - [`market_seller_concentration`](../../reference/market_seller_concentration.md)
 - [`market_seller_country_distribution`](../../reference/market_seller_country_distribution.md)

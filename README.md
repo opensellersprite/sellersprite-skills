@@ -2,6 +2,12 @@
 
 > 共 27 个 Skills，覆盖从品类扫描到产品开发的全链路选品流程。
 > 每个 Skill 是一个独立的、可被 AI 直接执行的"数据技能卡"。
+>
+> 📑 `reference/` 提供已值级验证的 API 字段映射参考（market_research / product_research / competitor_lookup / traffic_keyword / keyword_miner），含网页↔MCP 改名、刻度（0~1 vs 百分数）与工具选型，供 Skill 调用时对齐口径。
+>
+> 🎨 每个 Skill 在 Markdown 正文后可追加一个自包含的 HTML Dashboard 报告（图表用 `[[chart]]` ECharts 嵌入），统一样式规范见 [`reference/html-report-style.md`](reference/html-report-style.md)。
+>
+> 👀 观感样例（浏览器可直接预览）：[市场全景分析](samples/market-analysis-report.sample.html) · [竞品深度拆解](samples/competitor-analysis-report.sample.html) · [智能选品筛选](samples/product-research-report.sample.html)（三者共享 [`samples/dashboard.css`](samples/dashboard.css)）。
 
 ---
 

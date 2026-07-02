@@ -145,6 +145,13 @@ skills/
   SKILL.md                          # 本文件：技能总览元数据
   README.md                         # Skill 索引（27 个 Skill 的详细列表）
   agent-instructions.md             # 项目概述 + 38 个 MCP 工具清单，作为 AI 客户端的 CLAUDE.md/AGENTS.md 写入
+  reference/                        # API 字段映射参考（已值级验证：market_research / product_research / competitor_lookup / traffic_keyword / keyword_miner）
+    html-report-style.md            # HTML Dashboard 报告样式规范（内联 CSS 骨架 / 组件库 / 图表 / 数字格式），所有 Skill 生成 HTML 报告时共用
+  samples/                          # HTML Dashboard 报告观感样例（浏览器可直接预览）
+    dashboard.css                   # 三个样例共享样式表（= html-report-style.md 规范的可复用实现）
+    market-analysis-report.sample.html
+    competitor-analysis-report.sample.html
+    product-research-report.sample.html
   comprehensive/                    # 综合分析 Skills（10 个）
     product-research.md
     market-analysis.md
@@ -165,6 +172,17 @@ skills/
     local-premium-disruption.md / fbm-intercept.md / poor-listing-winner.md
     high-ticket-long-tail.md / seasonal-prepositioning.md
 ```
+
+### 报告观感样例（HTML Dashboard）
+
+以下样例演示 Skill 输出的 HTML 报告观感，浏览器可直接打开预览；样式统一遵循 [`reference/html-report-style.md`](reference/html-report-style.md)：
+
+- [市场全景分析样例](samples/market-analysis-report.sample.html) — KPI + 品牌集中度条形 + 双轴趋势 + 关键词徽章表 + 形态饼图 + 策略三列
+- [竞品深度拆解样例](samples/competitor-analysis-report.sample.html) — 14 月趋势 + 流量结构饼图 + 评分分布 + 流量词表 + SWOT 2×2 + 应对三列
+- [智能选品筛选样例](samples/product-research-report.sample.html) — 筛选口径 + KPI + 价格带柱状 + 潜力评级候选表 + 下一步动作三列
+
+> 三个样例共享 [`samples/dashboard.css`](samples/dashboard.css)（规范的可复用实现）。样例内图表用 ECharts(CDN) 直接渲染以便预览；Skill 实际输出则写成 `[[chart]]` ECharts JSON，由平台前端渲染。
+
 
 ---
 

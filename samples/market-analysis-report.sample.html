@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<!--
+  market-analysis Skill · HTML Dashboard 观感样例（收纳箱 Storage Bins · US · 2026-05）
+  ─────────────────────────────────────────────────────────────────────────
+  · CSS 与组件结构 == reference/html-report-style.md 规范，与技能实际输出一致。
+  · 图表：本样例用真实 ECharts(CDN) 渲染，便于浏览器直接预览观感；
+    在技能实际输出中，同样的图表写成 [[chart]]{ECharts option JSON}[[/chart]]，
+    由平台前端提取渲染（见每个图表上方注释里的等价 [[chart]] 片段）。
+  · 数据为演示用 mock，非真实抓取。
+-->
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>市场分析 · 收纳箱 Storage Bins · US</title>
+<link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+<div class="wrap">
+
+  <!-- 头部 -->
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem">
+    <div>
+      <div style="font-size:15px;font-weight:500">收纳箱 — Storage Bins</div>
+      <div style="font-size:12px;color:var(--color-text-secondary);margin-top:3px">Amazon US · TOP100 · 数据基准：2026-05</div>
+    </div>
+    <span class="tag tag-warn">中等竞争 · 可差异化进入</span>
+  </div>
+
+  <!-- KPI -->
+  <div class="kpi-grid">
+    <div class="kpi"><div class="kpi-val">$312.8万</div><div class="kpi-label">TOP100 月销售额</div><div class="kpi-sub">2026-05</div></div>
+    <div class="kpi"><div class="kpi-val">118,420</div><div class="kpi-label">TOP100 月总销量</div><div class="kpi-sub">件</div></div>
+    <div class="kpi"><div class="kpi-val">$26.40</div><div class="kpi-label">TOP100 均价</div><div class="kpi-sub">中位价约 $24.90</div></div>
+    <div class="kpi"><div class="kpi-val">12.0%</div><div class="kpi-label">半年内新品占比</div><div class="kpi-sub">12 款 / TOP100</div></div>
+  </div>
+
+  <!-- 两列：品牌集中度条形图 + 洞察 -->
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title">品牌集中度（TOP5 月销量占比）</div>
+      <div class="bar-row"><span class="bar-label">SONGMICS</span><span class="bar-track"><span class="bar-fill" style="width:100%;background:#378ADD"></span></span><span class="bar-val">18.2%</span></div>
+      <div class="bar-row"><span class="bar-label">IRIS USA</span><span class="bar-track"><span class="bar-fill" style="width:80%;background:#5DCAA5"></span></span><span class="bar-val">14.6%</span></div>
+      <div class="bar-row"><span class="bar-label">Sterilite</span><span class="bar-track"><span class="bar-fill" style="width:62%;background:#EF9F27"></span></span><span class="bar-val">11.3%</span></div>
+      <div class="bar-row"><span class="bar-label">Amazon Basics</span><span class="bar-track"><span class="bar-fill" style="width:45%;background:#E24B4A"></span></span><span class="bar-val">8.1%</span></div>
+      <div class="bar-row"><span class="bar-label">HOMIDEC</span><span class="bar-track"><span class="bar-fill" style="width:30%;background:#7F77DD"></span></span><span class="bar-val">5.4%</span></div>
+      <div style="margin-top:10px;font-size:12px;color:var(--color-text-secondary)">
+        TOP3 合计 <strong style="color:var(--color-text-primary)">44.1%</strong> · 头部有品牌力但未垄断，长尾仍有空间
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">市场结构快照</div>
+      <div class="insight-row"><span class="insight-icon">📈</span><span class="insight-text">近 12 个月月销量 <strong>+28.7%</strong>，<strong>11–12 月</strong>为明显旺季</span></div>
+      <div class="insight-row"><span class="insight-icon">🆕</span><span class="insight-text">半年内新品 <strong>12 款</strong>仍在出单，最高月销 <strong>3,200 件</strong>，进入窗口未关闭</span></div>
+      <div class="insight-row"><span class="insight-icon">🏷️</span><span class="insight-text">主力价格带 <strong>$18–$32</strong>，中位价 $24.9，低于均价说明高价长尾拉高均值</span></div>
+      <div class="insight-row"><span class="insight-icon">⭐</span><span class="insight-text">4 星以上销量占比 <strong>81.3%</strong>，300 评以下占比 <strong>34.0%</strong>，新品破评门槛中等</span></div>
+      <div class="insight-row"><span class="insight-icon">🏭</span><span class="insight-text">亚马逊自营销量占比 <strong>8.1%</strong>，第三方卖家主导，非自营垄断品类</span></div>
+    </div>
+  </div>
+
+  <!-- 图表1：月销量 + 均价双轴趋势 -->
+  <!--
+   等价 [[chart]] 片段（技能实际输出用这段，平台自动渲染）：
+   [[chart]]
+   {"title":{"text":"月销量与均价趋势（近12个月）"},"tooltip":{"trigger":"axis"},"legend":{"data":["月销量","均价"]},"xAxis":{"type":"category","data":["06月","07月","08月","09月","10月","11月","12月","01月","02月","03月","04月","05月"]},"yAxis":[{"type":"value","name":"月销量"},{"type":"value","name":"均价($)"}],"series":[{"name":"月销量","type":"bar","itemStyle":{"color":"#378ADD"},"data":[92000,95000,98000,101000,108000,121000,142000,131000,110000,104000,112000,118420]},{"name":"均价","type":"line","yAxisIndex":1,"smooth":true,"itemStyle":{"color":"#EF9F27"},"data":[25.1,25.4,25.8,26.0,26.3,26.8,27.2,26.9,26.2,25.9,26.1,26.4]}]}
+   [[/chart]]
+  -->
+  <div class="card">
+    <div class="card-title">月销量与均价趋势（近 12 个月）</div>
+    <div id="chart-trend" class="chart-box" role="img" aria-label="近12个月月销量柱状图与均价折线双轴趋势"></div>
+  </div>
+
+  <!-- 关键词表 -->
+  <div class="card">
+    <div class="card-title">关键词需求分析</div>
+    <table class="tbl">
+      <thead><tr><th>关键词</th><th>月搜索量</th><th>CPC</th><th>竞争商品数</th><th>购买率</th><th>旺季</th><th>进入建议</th></tr></thead>
+      <tbody>
+        <tr><td>storage bins</td><td>40.7万</td><td>$1.21</td><td>2,000+</td><td>2.85%</td><td>11–12月</td><td><span class="tag tag-warn">需差异化</span></td></tr>
+        <tr><td>storage bins with lids</td><td>12.3万</td><td>$0.98</td><td>1,400</td><td>3.42%</td><td>全年</td><td><span class="tag tag-success">竞争适中·可测试</span></td></tr>
+        <tr><td>clear storage bins</td><td>9.1万</td><td>$1.05</td><td>980</td><td>3.10%</td><td>全年</td><td><span class="tag tag-info">重点布局</span></td></tr>
+        <tr><td>storage bins for closet</td><td>5.4万</td><td>$0.87</td><td>620</td><td>3.88%</td><td>换季</td><td><span class="tag tag-success">竞争适中·可测试</span></td></tr>
+        <tr><td>collapsible storage bins</td><td>3.2万</td><td>$0.76</td><td>410</td><td>4.10%</td><td>全年</td><td><span class="tag tag-info">重点布局</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 图表2：产品形态销量占比（pie） -->
+  <!--
+   等价 [[chart]] 片段：
+   [[chart]]
+   {"title":{"text":"产品形态月销量占比"},"tooltip":{"trigger":"item"},"series":[{"type":"pie","radius":"60%","data":[{"value":42,"name":"透明带盖箱"},{"value":31,"name":"布艺折叠箱"},{"value":15,"name":"滚轮抽屉箱"},{"value":12,"name":"其他"}]}]}
+   [[/chart]]
+  -->
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title">产品形态月销量占比</div>
+      <div id="chart-form" class="chart-box pie" role="img" aria-label="产品形态月销量占比饼图"></div>
+    </div>
+    <div class="card">
+      <div class="card-title">产品形态分层</div>
+      <div class="form-grid">
+        <div class="form-card">
+          <div style="font-size:12px;font-weight:500;margin-bottom:6px">透明带盖箱</div>
+          <div style="font-size:12px;color:var(--color-text-secondary);line-height:1.5">代表 B0CLR1234<br>均价 $28.90 · 月销 3,200 件<br>透明可视 + 一体带盖</div>
+          <div style="margin-top:6px"><span class="tag tag-success">机会形态</span></div>
+        </div>
+        <div class="form-card">
+          <div style="font-size:12px;font-weight:500;margin-bottom:6px">布艺折叠箱</div>
+          <div style="font-size:12px;color:var(--color-text-secondary);line-height:1.5">代表 B0FAB5678<br>均价 $19.50 · 月销 2,800 件<br>轻小件 · FBA 低</div>
+          <div style="margin-top:6px"><span class="tag tag-info">可测试</span></div>
+        </div>
+        <div class="form-card">
+          <div style="font-size:12px;font-weight:500;margin-bottom:6px">滚轮抽屉箱</div>
+          <div style="font-size:12px;color:var(--color-text-secondary);line-height:1.5">代表 B0RLR9012<br>均价 $42.00 · 月销 1,100 件<br>结构复杂 · 大件 FBA 高</div>
+          <div style="margin-top:6px"><span class="tag tag-warn">谨慎进入</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 策略三列 -->
+  <div class="strat-grid">
+    <div class="strat-card">
+      <div class="strat-card-title" style="color:var(--color-text-success)">进入机会</div>
+      <div class="strat-item">透明带盖新品仍出单，视觉差异化空间大</div>
+      <div class="strat-item">clear / collapsible 长尾词购买率 >3%，竞争商品数 &lt;1000</div>
+      <div class="strat-item">布艺折叠箱轻小件，头程与 FBA 成本低</div>
+      <div class="strat-item">换季场景词旺季明确，可提前铺货卡位</div>
+    </div>
+    <div class="strat-card">
+      <div class="strat-card-title" style="color:var(--color-text-danger)">核心风险</div>
+      <div class="strat-item">SONGMICS / IRIS 品牌力强，主词首页被头部占据</div>
+      <div class="strat-item">主词 storage bins 竞争商品 2,000+，红海</div>
+      <div class="strat-item">旺季集中 11–12 月，备货与现金流压力大</div>
+      <div class="strat-item">滚轮抽屉大件 FBA 费用高，利润率承压</div>
+    </div>
+    <div class="strat-card">
+      <div class="strat-card-title" style="color:var(--color-text-info)">行动建议</div>
+      <div class="strat-item">主图突出「透明可视 + 一体带盖」卖点</div>
+      <div class="strat-item">广告主组主打 clear / collapsible 长尾</div>
+      <div class="strat-item">避开主词红海，从场景词与形态词切入</div>
+      <div class="strat-item">10–11 月前完成铺货与评价冷启动</div>
+    </div>
+  </div>
+
+  <!-- 页脚 -->
+  <div class="foot">数据来源：卖家精灵 MCP · market_research_statistics ×12 / market_brand_concentration / market_seller_concentration / keyword_research / review · 数据月份 2026-05 · 本样例数据为演示 mock</div>
+
+</div>
+
+<!-- 观感样例专用：真实 ECharts 渲染（技能实际输出用 [[chart]] 由平台渲染，无需此脚本） -->
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<script>
+(function(){
+  if(!window.echarts){return;}
+  echarts.init(document.getElementById('chart-trend')).setOption({
+    tooltip:{trigger:'axis'},
+    legend:{data:['月销量','均价'],bottom:0},
+    grid:{left:48,right:52,top:16,bottom:44},
+    xAxis:{type:'category',data:['06月','07月','08月','09月','10月','11月','12月','01月','02月','03月','04月','05月']},
+    yAxis:[{type:'value',name:'月销量'},{type:'value',name:'均价($)',position:'right'}],
+    series:[
+      {name:'月销量',type:'bar',itemStyle:{color:'#378ADD'},data:[92000,95000,98000,101000,108000,121000,142000,131000,110000,104000,112000,118420]},
+      {name:'均价',type:'line',yAxisIndex:1,smooth:true,itemStyle:{color:'#EF9F27'},data:[25.1,25.4,25.8,26.0,26.3,26.8,27.2,26.9,26.2,25.9,26.1,26.4]}
+    ]
+  });
+  echarts.init(document.getElementById('chart-form')).setOption({
+    tooltip:{trigger:'item'},
+    legend:{bottom:0},
+    color:['#378ADD','#5DCAA5','#EF9F27','#E24B4A'],
+    series:[{type:'pie',radius:'62%',center:['50%','46%'],data:[
+      {value:42,name:'透明带盖箱'},{value:31,name:'布艺折叠箱'},{value:15,name:'滚轮抽屉箱'},{value:12,name:'其他'}
+    ]}]
+  });
+  window.addEventListener('resize',function(){
+    echarts.getInstanceByDom(document.getElementById('chart-trend')).resize();
+    echarts.getInstanceByDom(document.getElementById('chart-form')).resize();
+  });
+})();
+</script>
+</body>
+</html>
